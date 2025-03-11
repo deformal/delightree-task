@@ -1,15 +1,12 @@
-import { ApolloServer, BaseContext } from '@apollo/server';
+import { ApolloServer } from '@apollo/server';
 import cors, { CorsOptions } from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import express, { Express } from 'express';
 import { expressMiddleware } from '@apollo/server/express4';
 import { config } from 'dotenv';
+import { MyContext } from 'src/types/types';
 config();
-
-interface MyContext extends BaseContext {
-  token?: string;
-}
 
 export function ServerConfig(
   app: Express,

@@ -2,9 +2,9 @@ import express, { Express } from 'express';
 import http from 'http';
 import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
-import { BaseContext } from '@apollo/server';
 import { config } from 'dotenv';
 import { ServerConfig } from './server-config';
+import { MyContext } from 'src/types/types';
 config();
 const typeDefs = `#graphql
   type Query {
@@ -17,10 +17,6 @@ const resolvers = {
     hello: () => 'Hello, GraphQL!',
   },
 };
-
-interface MyContext extends BaseContext {
-  token?: string;
-}
 
 export async function startServer() {
   const app: Express = express();
