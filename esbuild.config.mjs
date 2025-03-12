@@ -1,4 +1,5 @@
 import { build } from 'esbuild';
+import { tsconfigPaths } from '@esbuild-plugins/tsconfig-paths';
 
 (async () => {
   await build({
@@ -8,6 +9,8 @@ import { build } from 'esbuild';
     sourcemap: true,
     outdir: './dist',
     platform: 'node',
+    // external: ['awilix'],
+    plugins: [tsconfigPaths()],
   });
 })()
   .then(() => {

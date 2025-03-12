@@ -25,6 +25,14 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
-    "noFallthroughCasesInSwitch": false
-  },
+    "noFallthroughCasesInSwitch": false,
+    "paths": {
+      "@delightree-task/types": [
+        "./src/types/types"
+      ],
+      "@delightree-task-models/*": [
+        "./src/infra/mongo/schemas/*"
+      ],
+    }
+  }
 }
