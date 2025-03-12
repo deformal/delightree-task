@@ -1,5 +1,5 @@
 import { build } from 'esbuild';
-import { tsconfigPaths } from '@esbuild-plugins/tsconfig-paths';
+import { TsconfigPathsPlugin } from '@esbuild-plugins/tsconfig-paths';
 
 (async () => {
   await build({
@@ -10,10 +10,45 @@ import { tsconfigPaths } from '@esbuild-plugins/tsconfig-paths';
     outdir: './dist',
     platform: 'node',
     // external: ['awilix'],
-    plugins: [tsconfigPaths()],
+    plugins: [
+      TsconfigPathsPlugin({
+        tsconfig: {
+          compilerOptions: {
+            module: 'Node18',
+            declaration: true,
+            removeComments: true,
+            emitDecoratorMetadata: true,
+            experimentalDecorators: true,
+            allowSyntheticDefaultImports: true,
+            target: 'ES2023',
+            sourceMap: true,
+            esModuleInterop: true,
+            moduleResolution: 'node16',
+            strict: true,
+            outDir: './dist',
+            baseUrl: './',
+            incremental: true,
+            skipLibCheck: true,
+            strictNullChecks: true,
+            forceConsistentCasingInFileNames: true,
+            noImplicitAny: false,
+            strictBindCallApply: false,
+            noFallthroughCasesInSwitch: false,
+            paths: {
+              '@delightree-task/*': ['./src/types/*'],
+              '@delightree-task-models/*': ['./src/infra/mongo/schemas/*'],
+              '@delightree-task/constants': ['./src/constants'],
+              '@delightree-task-mongo/connect': [
+                './src/infra/mongo/mongo-connect',
+              ],
+            },
+          },
+        },
+      }),
+    ],
   });
 })()
   .then(() => {
     console.debug('Build Complete ✅');
   })
-  .catch(() => console.error('Some error occured during the build process'));
+  .catch((err) => console.error(err));

@@ -27,11 +27,17 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@delightree-task/types": [
-        "./src/types/types"
+      "@delightree-task/*": [
+        "./src/types/*"
       ],
       "@delightree-task-models/*": [
         "./src/infra/mongo/schemas/*"
+      ],
+      "@delightree-task-mongo/connect": [
+        "./src/infra/mongo/mongo-connect"
+      ],
+      "@delightree-task/constants": [
+        "./src/constants"
       ],
     }
   }

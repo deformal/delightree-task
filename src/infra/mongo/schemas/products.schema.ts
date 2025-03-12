@@ -6,6 +6,7 @@ export interface IProduct {
   category: string;
   price: number;
   stock: number;
+  created_at: Date;
 }
 
 export interface IProductOfOrder {
@@ -16,6 +17,7 @@ export interface IProductOfOrder {
 
 export const productSchema = new Schema<IProduct>({
   _id: { type: Schema.Types.ObjectId, required: true, unique: true },
+  created_at: { type: Schema.Types.Date, required: true, default: new Date() },
   name: { type: String, required: true, unique: true },
   category: { type: String, required: true, index: true },
   price: { type: Number, required: true, index: true },
@@ -28,4 +30,4 @@ export const productOfOrderSchema = new Schema<IProductOfOrder>({
   price_at_purchase: { type: Number, required: true },
 });
 
-export const Product = model<IProduct>('products', productSchema);
+export const ProductModel = model<IProduct>('products', productSchema);
