@@ -13,34 +13,6 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: '${MONGO_INITDB_ROOT_PASSWORD}'
       MONGO_INITDB_DATABASE: '${MONGO_INITDB_DATABASE}'
 
-  # mongo2:
-  #   container_name: mongo_rs2
-  #   image: mongo:7.0-jammy
-  #   command: --replSet 'rs0' --keyFile /etc/mongodb/pki/keyfile --bind_ip 0.0.0.0
-  #   volumes:
-  #     - mongo2-data:/data/db
-  #     - $PWD/docker/mongo/mongo-keyfile:/etc/mongodb/pki/keyfile
-  #   ports:
-  #     - 27018:27017
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: '${MONGO_INITDB_ROOT_USERNAME}'
-  #     MONGO_INITDB_ROOT_PASSWORD: '${MONGO_INITDB_ROOT_PASSWORD}'
-  #     MONGO_INITDB_DATABASE: '${MONGO_INITDB_DATABASE}'
-
-  # mongo3:
-  #   container_name: mongo_rs3
-  #   image: mongo:7.0-jammy
-  #   command: --replSet 'rs0' --keyFile /etc/mongodb/pki/keyfile --bind_ip 0.0.0.0
-  #   volumes:
-  #     - mongo3-data:/data/db
-  #     - $PWD/docker/mongo/mongo-keyfile:/etc/mongodb/pki/keyfile
-  #   ports:
-  #     - 27019:27017
-  #   environment:
-  #     MONGO_INITDB_ROOT_USERNAME: '${MONGO_INITDB_ROOT_USERNAME}'
-  #     MONGO_INITDB_ROOT_PASSWORD: '${MONGO_INITDB_ROOT_PASSWORD}'
-  #     MONGO_INITDB_DATABASE: '${MONGO_INITDB_DATABASE}'
-
   mongoinit:
     image: 'mongo-init'
     build:
@@ -52,8 +24,6 @@ services:
       MONGO_INITDB_DATABASE: '${MONGO_INITDB_DATABASE}'
     depends_on:
       - mongo1
-      # - mongo2
-      # - mongo3
 
   redis:
     image: redis:alpine
