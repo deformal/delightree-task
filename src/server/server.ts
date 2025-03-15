@@ -10,7 +10,7 @@ export async function startServer() {
     const app: Express = express();
     await DBConnect();
     const httpServer = http.createServer(app);
-    const server = ApolloServerConfig(httpServer);
+    const server = await ApolloServerConfig(httpServer);
     await server.start();
     ServerConfig(app, server);
     httpServer.listen({ port: 4000 }, () => {

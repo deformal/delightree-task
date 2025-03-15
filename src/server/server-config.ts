@@ -1,4 +1,5 @@
 import { ApolloServer } from '@apollo/server';
+import { buildSchema } from 'type-graphql';
 import cors, { CorsOptions } from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
@@ -8,26 +9,17 @@ import { config } from 'dotenv';
 import { MyContext } from 'src/types/types';
 import http from 'http';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
+import { CustomerResolver } from '../application/resolvers/customers.resolver';
 config();
 
-const typeDefs = `#graphql
-  type Query {
-    hello: String
-  }
-`;
-
-const resolvers = {
-  Query: {
-    hello: () => 'Hello, GraphQL!',
-  },
-};
-
-export function ApolloServerConfig(
+export async function ApolloServerConfig(
   http_server: http.Server,
-): ApolloServer<MyContext> {
+): Promise<ApolloServer<MyContext>> {
+  const apollo_schema = await buildSchema({
+    resolvers: [CustomerResolver],
+  });
   const server = new ApolloServer<MyContext>({
-    typeDefs,
-    resolvers,
+    schema: apollo_schema,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer: http_server })],
     formatError: (err) => {
       console.error('GraphQL Error:', err);

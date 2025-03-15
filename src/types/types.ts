@@ -13,3 +13,5 @@ export type GeneralResponse = {
   message: ResponseMessages;
   ok: boolean;
 };
+
+export type GetCustomerOptionsTypes = { id?: string; email?: string };

@@ -1,6 +1,7 @@
 import { ICustomer } from '@delightree-task-models/customer.schema';
 import { pbkdf2Sync, randomBytes, randomUUID } from 'node:crypto';
 import { CUSTOMER_PASSWORD } from '../../constants';
+import { Order } from '../orders/orders.entity';
 
 export class Customer implements ICustomer {
   public _id: string;
@@ -11,8 +12,8 @@ export class Customer implements ICustomer {
   public gender: string;
   public password: string;
   public created_at: Date;
+  public orders: Array<Order>;
   private salt = randomBytes(16).toString('hex');
-  private;
 
   constructor(customer_config: ICustomer) {
     this.validateCustomerConfig(customer_config);

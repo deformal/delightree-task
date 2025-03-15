@@ -5,10 +5,10 @@ import { randomUUID } from 'crypto';
 export class Order implements IOrder {
   public _id: string;
   public customer_id: string;
-  public products: ProductOfOrder[];
   public total_amount: number;
   public order_date: Date;
   public status: OrderStatus;
+  public products: ProductOfOrder[];
 
   constructor(order_config: IOrder) {
     this.validateOrderConfig(order_config);

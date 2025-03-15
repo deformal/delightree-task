@@ -6,7 +6,7 @@
     "src"
   ],
   "compilerOptions": {
-    "module": "Node18",
+    "module": "CommonJS",
     "declaration": true,
     "removeComments": true,
     "emitDecoratorMetadata": true,
@@ -15,7 +15,6 @@
     "target": "ES2023",
     "sourceMap": true,
     "esModuleInterop": true,
-    "moduleResolution": "node16",
     "strict": true,
     "outDir": "./dist",
     "baseUrl": "./",
@@ -25,6 +24,7 @@
     "forceConsistentCasingInFileNames": true,
     "noImplicitAny": false,
     "strictBindCallApply": false,
+    "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
       "@delightree-task/*": [

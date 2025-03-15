@@ -14,7 +14,7 @@ import { TsconfigPathsPlugin } from '@esbuild-plugins/tsconfig-paths';
       TsconfigPathsPlugin({
         tsconfig: {
           compilerOptions: {
-            module: 'Node18',
+            module: 'CommonJS',
             declaration: true,
             removeComments: true,
             emitDecoratorMetadata: true,
@@ -23,7 +23,6 @@ import { TsconfigPathsPlugin } from '@esbuild-plugins/tsconfig-paths';
             target: 'ES2023',
             sourceMap: true,
             esModuleInterop: true,
-            moduleResolution: 'node16',
             strict: true,
             outDir: './dist',
             baseUrl: './',
@@ -31,6 +30,7 @@ import { TsconfigPathsPlugin } from '@esbuild-plugins/tsconfig-paths';
             skipLibCheck: true,
             strictNullChecks: true,
             forceConsistentCasingInFileNames: true,
+            strictPropertyInitialization: false,
             noImplicitAny: false,
             strictBindCallApply: false,
             noFallthroughCasesInSwitch: false,

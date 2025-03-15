@@ -1,9 +1,14 @@
-import { IProductOfOrder } from '@delightree-task-models/products.schema';
+import {
+  IProduct,
+  IProductOfOrder,
+} from '@delightree-task-models/products.schema';
+import { Product } from './product.entity';
 
 export class ProductOfOrder implements IProductOfOrder {
   public product_id: string;
   public quantity: number;
   public price_at_purchase: number;
+  public product_details_now: Product;
 
   constructor(product_order_config: IProductOfOrder) {
     this.validateProductOrderConfig(product_order_config);
@@ -28,5 +33,9 @@ export class ProductOfOrder implements IProductOfOrder {
     ) {
       throw new Error('Price at purchase must be a non-negative number.');
     }
+  }
+
+  setCurrentProductDataForThisProduct(product: IProduct): void {
+    this.product_details_now = new Product(product);
   }
 }
