@@ -1,7 +1,7 @@
-import { Schema, Types, model } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 export interface ICustomer {
-  _id: Types.ObjectId;
+  _id: string;
   created_at: Date;
   name: string;
   email: string;
@@ -12,7 +12,7 @@ export interface ICustomer {
 }
 
 export const customerSchema = new Schema<ICustomer>({
-  _id: { type: Schema.Types.ObjectId, required: true, unique: true },
+  _id: { type: String, required: true },
   created_at: { type: Schema.Types.Date, required: true, default: new Date() },
   name: { type: String, required: true, unique: true },
   password: { type: String, required: true, index: true },

@@ -8,7 +8,10 @@
   "scripts": {
     "build": "node esbuild.config.mjs",
     "start": "node ./dist/main.js",
-    "dev": "nodemon --ext ts --exec ts-node ./src/main.ts"
+    "dev": "nodemon --ext ts --exec ts-node ./src/main.ts",
+    "infra:dev:run": "docker compose -p delightree-task --env-file ./.env -f ./docker/docker-compose.yml up --build --force-recreate --remove-orphans -d ",
+    "infra:dev:stop": "docker compose -p delightree-task --env-file ./.env -f ./docker/docker-compose.yml --remove-orphans down",
+    "infra:dev:clean": "docker compose -p delightree-task --env-file ./.env -f ./docker/docker-compose.yml down --remove-orphans -v"
   },
   "dependencies": {
     "@apollo/server": "^4.11.3",

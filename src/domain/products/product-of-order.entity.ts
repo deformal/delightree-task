@@ -1,8 +1,7 @@
 import { IProductOfOrder } from '@delightree-task-models/products.schema';
-import { Types } from 'mongoose';
 
 export class ProductOfOrder implements IProductOfOrder {
-  public product_id: Types.ObjectId;
+  public product_id: string;
   public quantity: number;
   public price_at_purchase: number;
 

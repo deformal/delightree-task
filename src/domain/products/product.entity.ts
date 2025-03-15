@@ -1,8 +1,8 @@
 import { IProduct } from '@delightree-task-models/products.schema';
-import { Types } from 'mongoose';
+import { randomUUID } from 'node:crypto';
 
 export class Product implements IProduct {
-  public _id: Types.ObjectId;
+  public _id: string;
   public name: string;
   public category: string;
   public price: number;
@@ -11,7 +11,7 @@ export class Product implements IProduct {
 
   constructor(product_config: IProduct) {
     this.validateProductConfig(product_config);
-    this._id = product_config._id || new Types.ObjectId();
+    this._id = product_config._id || randomUUID();
     this.created_at = product_config.created_at || new Date();
     this.name = product_config.name;
     this.category = product_config.category;

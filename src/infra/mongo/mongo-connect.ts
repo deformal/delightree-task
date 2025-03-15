@@ -1,15 +1,18 @@
-import { MONGO_URI } from '@delightree-task/constants';
+import { MONGO_URI } from '../../constants';
 import { connect } from 'mongoose';
+import { Seed } from './seed/seed';
 
 export async function DBConnect(): Promise<void> {
   try {
-    const mongoURI: string = String(MONGO_URI);
-    console.log('Trying to connect to the mongodb');
-    console.log('Mongo Uri', mongoURI);
-    await connect(mongoURI, {
-      autoCreate: true,
-      sanitizeFilter: true,
+    console.log('Trying to connect to the replica set');
+    const mongoose = await connect(MONGO_URI, {
+      serverSelectionTimeoutMS: 10000,
     });
+    if (!mongoose.connection.db)
+      throw Error('ERROR CONNECTING TO THE ADMIN DB');
+    console.log('✅ Connected to MongoDB Replica Set');
+    console.log('Seeding');
+    await Seed();
   } catch (err) {
     const error = err as Error;
     console.error(error);

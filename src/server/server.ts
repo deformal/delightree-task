@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import http from 'http';
 import { config } from 'dotenv';
 import { ApolloServerConfig, ServerConfig } from './server-config';
-import { DBConnect } from '@delightree-task-mongo/connect';
+import { DBConnect } from '../infra/mongo/mongo-connect';
 config();
 
 export async function startServer() {

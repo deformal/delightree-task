@@ -1,10 +1,10 @@
 import { IOrder, OrderStatus } from '@delightree-task-models/orders.schema';
-import { Types } from 'mongoose';
 import { ProductOfOrder } from '../products/product-of-order.entity';
+import { randomUUID } from 'crypto';
 
 export class Order implements IOrder {
-  public _id: Types.ObjectId;
-  public customer_id: Types.ObjectId;
+  public _id: string;
+  public customer_id: string;
   public products: ProductOfOrder[];
   public total_amount: number;
   public order_date: Date;
@@ -12,7 +12,7 @@ export class Order implements IOrder {
 
   constructor(order_config: IOrder) {
     this.validateOrderConfig(order_config);
-    this._id = order_config._id || new Types.ObjectId();
+    this._id = order_config._id || randomUUID();
     this.order_date = order_config.order_date || new Date();
     this.customer_id = order_config.customer_id;
     this.total_amount = order_config.total_amount;

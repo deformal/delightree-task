@@ -1,0 +1,382 @@
+[
+  {
+    "_id": "06a714db-57ec-4af4-bd23-6e01ae764f14",
+    "customer_id": "7895595e-7f25-47fe-a6f8-94b31bfab736",
+    "products": [
+      {
+        "product_id": "34fad6ef-d906-44ce-ae7a-44453282b0e9",
+        "quantity": 1,
+        "price_at_purchase": 228.67
+      },
+      {
+        "product_id": "508220fc-2f77-414e-b9d6-120be0fca340",
+        "quantity": 3,
+        "price_at_purchase": 19.05
+      }
+    ],
+    "total_amount": 285.82,
+    "order_date": "2024-12-08T10:35:58.471788",
+    "status": "canceled"
+  },
+  {
+    "_id": "94588a10-2a5a-4cea-a1de-3e28591af676",
+    "customer_id": "fbcfbac1-7731-4076-8e19-eef4717da14b",
+    "products": [
+      {
+        "product_id": "5af13f8d-d1cc-4d7a-bc64-89cf3154077d",
+        "quantity": 1,
+        "price_at_purchase": 329.87
+      },
+      {
+        "product_id": "5af13f8d-d1cc-4d7a-bc64-89cf3154077d",
+        "quantity": 1,
+        "price_at_purchase": 329.87
+      },
+      {
+        "product_id": "34fad6ef-d906-44ce-ae7a-44453282b0e9",
+        "quantity": 4,
+        "price_at_purchase": 228.67
+      }
+    ],
+    "total_amount": 1574.42,
+    "order_date": "2024-12-23T10:35:58.471788",
+    "status": "canceled"
+  },
+  {
+    "_id": "2d188162-8b01-408d-8c80-0283aecad77a",
+    "customer_id": "adf96a4e-6987-4731-8798-09b109ff65c3",
+    "products": [
+      {
+        "product_id": "34fad6ef-d906-44ce-ae7a-44453282b0e9",
+        "quantity": 1,
+        "price_at_purchase": 228.67
+      },
+      {
+        "product_id": "570f3f7a-6ba2-4019-8caa-06709bf9ea71",
+        "quantity": 2,
+        "price_at_purchase": 324.37
+      }
+    ],
+    "total_amount": 877.41,
+    "order_date": "2024-12-15T10:35:58.471788",
+    "status": "completed"
+  },
+  {
+    "_id": "5c927fbf-9847-4c8b-8cf3-afac3890b979",
+    "customer_id": "fbcfbac1-7731-4076-8e19-eef4717da14b",
+    "products": [
+      {
+        "product_id": "3f696054-b1d1-4d8f-afa3-0ff3a63ff6b8",
+        "quantity": 1,
+        "price_at_purchase": 243.08
+      },
+      {
+        "product_id": "77826add-203f-4e5e-8dc2-a01b5968a6af",
+        "quantity": 1,
+        "price_at_purchase": 140.14
+      },
+      {
+        "product_id": "5879d4ff-3b7c-4dc1-884d-8077f25af099",
+        "quantity": 3,
+        "price_at_purchase": 437.53
+      }
+    ],
+    "total_amount": 1695.81,
+    "order_date": "2024-11-14T10:35:58.471788",
+    "status": "canceled"
+  },
+  {
+    "_id": "5d039be6-bc89-4b04-b2d0-c84beecc4cfa",
+    "customer_id": "45f2def4-1923-4f48-8870-924b2955d39e",
+    "products": [
+      {
+        "product_id": "34fad6ef-d906-44ce-ae7a-44453282b0e9",
+        "quantity": 4,
+        "price_at_purchase": 228.67
+      },
+      {
+        "product_id": "f5abb3ad-a6c8-482e-a393-6a4598806404",
+        "quantity": 1,
+        "price_at_purchase": 417.57
+      },
+      {
+        "product_id": "570f3f7a-6ba2-4019-8caa-06709bf9ea71",
+        "quantity": 5,
+        "price_at_purchase": 324.37
+      }
+    ],
+    "total_amount": 2954.1,
+    "order_date": "2024-12-31T10:35:58.471788",
+    "status": "canceled"
+  },
+  {
+    "_id": "23233894-07a9-4b4d-b797-201f55148f81",
+    "customer_id": "bb46046e-73c4-4b34-a5e3-6dd9f2dc90bf",
+    "products": [
+      {
+        "product_id": "1e2c1b29-ec24-40dc-b2fc-1a3c17c3093c",
+        "quantity": 3,
+        "price_at_purchase": 269.93
+      },
+      {
+        "product_id": "77826add-203f-4e5e-8dc2-a01b5968a6af",
+        "quantity": 3,
+        "price_at_purchase": 140.14
+      },
+      {
+        "product_id": "5af13f8d-d1cc-4d7a-bc64-89cf3154077d",
+        "quantity": 4,
+        "price_at_purchase": 329.87
+      }
+    ],
+    "total_amount": 2549.69,
+    "order_date": "2025-01-29T10:35:58.471788",
+    "status": "canceled"
+  },
+  {
+    "_id": "9aef973c-ad39-4218-a8c4-4b5f3b2ad653",
+    "customer_id": "7895595e-7f25-47fe-a6f8-94b31bfab736",
+    "products": [
+      {
+        "product_id": "1e2c1b29-ec24-40dc-b2fc-1a3c17c3093c",
+        "quantity": 3,
+        "price_at_purchase": 269.93
+      },
+      {
+        "product_id": "508220fc-2f77-414e-b9d6-120be0fca340",
+        "quantity": 2,
+        "price_at_purchase": 19.05
+      },
+      {
+        "product_id": "5af13f8d-d1cc-4d7a-bc64-89cf3154077d",
+        "quantity": 5,
+        "price_at_purchase": 329.87
+      }
+    ],
+    "total_amount": 2497.24,
+    "order_date": "2025-01-05T10:35:58.471788",
+    "status": "canceled"
+  },
+  {
+    "_id": "57c6bb49-601e-4059-abc7-cbb7bac9c024",
+    "customer_id": "bb46046e-73c4-4b34-a5e3-6dd9f2dc90bf",
+    "products": [
+      {
+        "product_id": "f5abb3ad-a6c8-482e-a393-6a4598806404",
+        "quantity": 3,
+        "price_at_purchase": 417.57
+      },
+      {
+        "product_id": "34fad6ef-d906-44ce-ae7a-44453282b0e9",
+        "quantity": 5,
+        "price_at_purchase": 228.67
+      },
+      {
+        "product_id": "5879d4ff-3b7c-4dc1-884d-8077f25af099",
+        "quantity": 4,
+        "price_at_purchase": 437.53
+      }
+    ],
+    "total_amount": 4146.18,
+    "order_date": "2024-12-19T10:35:58.471788",
+    "status": "canceled"
+  },
+  {
+    "_id": "237b25b0-a6d2-4810-9a46-c1eb22175347",
+    "customer_id": "adf96a4e-6987-4731-8798-09b109ff65c3",
+    "products": [
+      {
+        "product_id": "5af13f8d-d1cc-4d7a-bc64-89cf3154077d",
+        "quantity": 2,
+        "price_at_purchase": 329.87
+      },
+      {
+        "product_id": "61d60456-49df-483e-8dde-170938cd4caa",
+        "quantity": 1,
+        "price_at_purchase": 452.67
+      }
+    ],
+    "total_amount": 1112.41,
+    "order_date": "2025-01-24T10:35:58.471788",
+    "status": "pending"
+  },
+  {
+    "_id": "bdf61875-ba2b-4141-8c5f-5c03081f4040",
+    "customer_id": "e7d22fe7-bee5-4507-bcb8-8b4b999dc9fd",
+    "products": [
+      {
+        "product_id": "508220fc-2f77-414e-b9d6-120be0fca340",
+        "quantity": 4,
+        "price_at_purchase": 19.05
+      }
+    ],
+    "total_amount": 76.2,
+    "order_date": "2025-01-01T10:35:58.471788",
+    "status": "completed"
+  },
+  {
+    "_id": "418d7665-1c9d-45d2-a4d9-5d1c572343d6",
+    "customer_id": "bb46046e-73c4-4b34-a5e3-6dd9f2dc90bf",
+    "products": [
+      {
+        "product_id": "77826add-203f-4e5e-8dc2-a01b5968a6af",
+        "quantity": 5,
+        "price_at_purchase": 140.14
+      }
+    ],
+    "total_amount": 700.7,
+    "order_date": "2025-01-13T10:35:58.471788",
+    "status": "completed"
+  },
+  {
+    "_id": "94727908-7413-45be-9a85-c51e33ff24aa",
+    "customer_id": "45f2def4-1923-4f48-8870-924b2955d39e",
+    "products": [
+      {
+        "product_id": "508220fc-2f77-414e-b9d6-120be0fca340",
+        "quantity": 5,
+        "price_at_purchase": 19.05
+      }
+    ],
+    "total_amount": 95.25,
+    "order_date": "2025-01-11T10:35:58.471788",
+    "status": "pending"
+  },
+  {
+    "_id": "acced919-05c2-44ae-9717-ac4a2e967831",
+    "customer_id": "a274321b-304d-49c8-ad20-3f7c3b3073fc",
+    "products": [
+      {
+        "product_id": "f5abb3ad-a6c8-482e-a393-6a4598806404",
+        "quantity": 3,
+        "price_at_purchase": 417.57
+      }
+    ],
+    "total_amount": 1252.71,
+    "order_date": "2025-02-04T10:35:58.471788",
+    "status": "pending"
+  },
+  {
+    "_id": "5a0629fa-20d5-4718-a703-74f72823d157",
+    "customer_id": "7895595e-7f25-47fe-a6f8-94b31bfab736",
+    "products": [
+      {
+        "product_id": "f5abb3ad-a6c8-482e-a393-6a4598806404",
+        "quantity": 1,
+        "price_at_purchase": 417.57
+      },
+      {
+        "product_id": "1e2c1b29-ec24-40dc-b2fc-1a3c17c3093c",
+        "quantity": 5,
+        "price_at_purchase": 269.93
+      }
+    ],
+    "total_amount": 1767.22,
+    "order_date": "2024-12-16T10:35:58.471788",
+    "status": "canceled"
+  },
+  {
+    "_id": "ba98b2f5-ff88-49a7-9cb3-c73b3959fd8b",
+    "customer_id": "870bc042-3755-427b-860c-18286e6be463",
+    "products": [
+      {
+        "product_id": "508220fc-2f77-414e-b9d6-120be0fca340",
+        "quantity": 3,
+        "price_at_purchase": 19.05
+      },
+      {
+        "product_id": "34fad6ef-d906-44ce-ae7a-44453282b0e9",
+        "quantity": 5,
+        "price_at_purchase": 228.67
+      }
+    ],
+    "total_amount": 1200.5,
+    "order_date": "2025-01-17T10:35:58.471788",
+    "status": "pending"
+  },
+  {
+    "_id": "c895fb4b-7dc1-4769-b376-483f0ab205b8",
+    "customer_id": "51d492a7-56ad-44e6-bdd3-0571f77fccfc",
+    "products": [
+      {
+        "product_id": "61d60456-49df-483e-8dde-170938cd4caa",
+        "quantity": 2,
+        "price_at_purchase": 452.67
+      },
+      {
+        "product_id": "1e2c1b29-ec24-40dc-b2fc-1a3c17c3093c",
+        "quantity": 4,
+        "price_at_purchase": 269.93
+      }
+    ],
+    "total_amount": 1985.06,
+    "order_date": "2025-02-16T10:35:58.471788",
+    "status": "completed"
+  },
+  {
+    "_id": "4060e4b4-97d1-4570-8ca1-3018ec6c8dc8",
+    "customer_id": "a274321b-304d-49c8-ad20-3f7c3b3073fc",
+    "products": [
+      {
+        "product_id": "34fad6ef-d906-44ce-ae7a-44453282b0e9",
+        "quantity": 2,
+        "price_at_purchase": 228.67
+      }
+    ],
+    "total_amount": 457.34,
+    "order_date": "2025-02-05T10:35:58.471788",
+    "status": "canceled"
+  },
+  {
+    "_id": "e72a4b31-1be2-42cf-9cfc-ad3ebfd882c1",
+    "customer_id": "bb46046e-73c4-4b34-a5e3-6dd9f2dc90bf",
+    "products": [
+      {
+        "product_id": "5af13f8d-d1cc-4d7a-bc64-89cf3154077d",
+        "quantity": 4,
+        "price_at_purchase": 329.87
+      }
+    ],
+    "total_amount": 1319.48,
+    "order_date": "2024-12-23T10:35:58.471788",
+    "status": "pending"
+  },
+  {
+    "_id": "a3d83b3c-fe68-4ca5-ae11-e894e4c0be9f",
+    "customer_id": "e7d22fe7-bee5-4507-bcb8-8b4b999dc9fd",
+    "products": [
+      {
+        "product_id": "570f3f7a-6ba2-4019-8caa-06709bf9ea71",
+        "quantity": 4,
+        "price_at_purchase": 324.37
+      }
+    ],
+    "total_amount": 1297.48,
+    "order_date": "2025-01-23T10:35:58.471788",
+    "status": "completed"
+  },
+  {
+    "_id": "3ba73d4a-dd35-4ed2-a7e8-8aee8a9f2158",
+    "customer_id": "adf96a4e-6987-4731-8798-09b109ff65c3",
+    "products": [
+      {
+        "product_id": "61d60456-49df-483e-8dde-170938cd4caa",
+        "quantity": 4,
+        "price_at_purchase": 452.67
+      },
+      {
+        "product_id": "f5abb3ad-a6c8-482e-a393-6a4598806404",
+        "quantity": 2,
+        "price_at_purchase": 417.57
+      },
+      {
+        "product_id": "f5abb3ad-a6c8-482e-a393-6a4598806404",
+        "quantity": 4,
+        "price_at_purchase": 417.57
+      }
+    ],
+    "total_amount": 4316.1,
+    "order_date": "2025-02-07T10:35:58.471788",
+    "status": "canceled"
+  }
+]

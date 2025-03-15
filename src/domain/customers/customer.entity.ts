@@ -1,8 +1,9 @@
 import { ICustomer } from '@delightree-task-models/customer.schema';
-import { Types } from 'mongoose';
+import { pbkdf2Sync, randomBytes, randomUUID } from 'node:crypto';
+import { CUSTOMER_PASSWORD } from '../../constants';
 
 export class Customer implements ICustomer {
-  public _id: Types.ObjectId;
+  public _id: string;
   public name: string;
   public email: string;
   public age: number;
@@ -10,10 +11,12 @@ export class Customer implements ICustomer {
   public gender: string;
   public password: string;
   public created_at: Date;
+  private salt = randomBytes(16).toString('hex');
+  private;
 
   constructor(customer_config: ICustomer) {
     this.validateCustomerConfig(customer_config);
-    this._id = customer_config._id || new Types.ObjectId();
+    this._id = customer_config._id || randomUUID();
     this.created_at = customer_config.created_at || new Date();
     this.name = customer_config.name;
     this.email = customer_config.email;
@@ -40,7 +43,25 @@ export class Customer implements ICustomer {
       throw new Error('Customer gender is required.');
     }
     if (!customer_config.password) {
-      throw new Error('Customer password is required.');
+      this.newPassword(CUSTOMER_PASSWORD);
     }
+  }
+
+  newPassword(password: string) {
+    const new_pass = pbkdf2Sync(
+      password,
+      this.salt,
+      1000,
+      64,
+      `sha512`,
+    ).toString(`hex`);
+    this.password = new_pass;
+  }
+
+  validatePassword(password: string): boolean {
+    const hash = pbkdf2Sync(password, this.salt, 1000, 64, `sha512`).toString(
+      `hex`,
+    );
+    return hash === password;
   }
 }

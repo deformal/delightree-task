@@ -1,0 +1,73 @@
+services:
+  mongo1:
+    container_name: mongo_rs0
+    image: mongo:7.0-jammy
+    command: --replSet 'rs0' --keyFile /etc/mongodb/pki/keyfile
+    volumes:
+      - mongo1-data:/data/db
+      - $PWD/docker/mongo/mongo-keyfile:/etc/mongodb/pki/keyfile
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: '${MONGO_INITDB_ROOT_USERNAME}'
+      MONGO_INITDB_ROOT_PASSWORD: '${MONGO_INITDB_ROOT_PASSWORD}'
+      MONGO_INITDB_DATABASE: '${MONGO_INITDB_DATABASE}'
+
+  # mongo2:
+  #   container_name: mongo_rs2
+  #   image: mongo:7.0-jammy
+  #   command: --replSet 'rs0' --keyFile /etc/mongodb/pki/keyfile --bind_ip 0.0.0.0
+  #   volumes:
+  #     - mongo2-data:/data/db
+  #     - $PWD/docker/mongo/mongo-keyfile:/etc/mongodb/pki/keyfile
+  #   ports:
+  #     - 27018:27017
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: '${MONGO_INITDB_ROOT_USERNAME}'
+  #     MONGO_INITDB_ROOT_PASSWORD: '${MONGO_INITDB_ROOT_PASSWORD}'
+  #     MONGO_INITDB_DATABASE: '${MONGO_INITDB_DATABASE}'
+
+  # mongo3:
+  #   container_name: mongo_rs3
+  #   image: mongo:7.0-jammy
+  #   command: --replSet 'rs0' --keyFile /etc/mongodb/pki/keyfile --bind_ip 0.0.0.0
+  #   volumes:
+  #     - mongo3-data:/data/db
+  #     - $PWD/docker/mongo/mongo-keyfile:/etc/mongodb/pki/keyfile
+  #   ports:
+  #     - 27019:27017
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: '${MONGO_INITDB_ROOT_USERNAME}'
+  #     MONGO_INITDB_ROOT_PASSWORD: '${MONGO_INITDB_ROOT_PASSWORD}'
+  #     MONGO_INITDB_DATABASE: '${MONGO_INITDB_DATABASE}'
+
+  mongoinit:
+    image: 'mongo-init'
+    build:
+      context: $PWD
+      dockerfile: $PWD/docker/mongo/Dockerfile
+    environment:
+      MONGO1_USERNAME: '${MONGO_INITDB_ROOT_USERNAME}'
+      MONGO1_PASSWORD: '${MONGO_INITDB_ROOT_PASSWORD}'
+      MONGO_INITDB_DATABASE: '${MONGO_INITDB_DATABASE}'
+    depends_on:
+      - mongo1
+      # - mongo2
+      # - mongo3
+
+  redis:
+    image: redis:alpine
+    container_name: redis
+    restart: always
+    env_file:
+      - ../.env
+    ports:
+      - '6379:6379'
+    volumes:
+      - redis_data:/data
+
+volumes:
+  mongo1-data:
+  mongo2-data:
+  mongo3-data:
+  redis_data:
