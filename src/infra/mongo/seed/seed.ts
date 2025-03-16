@@ -6,7 +6,6 @@ import path from 'node:path';
 import { Customer } from '../../../domain/customers/customer.entity';
 import { Order } from '../../../domain/orders/orders.entity';
 import { Product } from '../../../domain/products/product.entity';
-import { CUSTOMER_PASSWORD } from '../../../constants';
 import { startSession } from 'mongoose';
 
 const customers_json_file_path = path.join(__dirname, './data/customers.json');
@@ -27,7 +26,6 @@ function loadJsonFile<T>(filePath: string): T[] {
 const customers_data = loadJsonFile<ICustomer>(customers_json_file_path).map(
   (customer) => {
     const new_customer = new Customer(customer);
-    new_customer.newPassword(CUSTOMER_PASSWORD);
     return new CustomerModel(new_customer);
   },
 );

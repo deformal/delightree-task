@@ -3,6 +3,7 @@ import http from 'http';
 import { config } from 'dotenv';
 import { ApolloServerConfig, ServerConfig } from './server-config';
 import { DBConnect } from '../infra/mongo/mongo-connect';
+import { PORT } from '../constants';
 config();
 
 export async function startServer() {
@@ -13,8 +14,8 @@ export async function startServer() {
     const server = await ApolloServerConfig(httpServer);
     await server.start();
     ServerConfig(app, server);
-    httpServer.listen({ port: 4000 }, () => {
-      console.log('Server started on port 4000');
+    httpServer.listen({ port: PORT }, () => {
+      console.log(`Server started on http://localhost:${PORT}/graphql`);
     });
   } catch (err) {
     const error = err as Error;

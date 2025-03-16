@@ -1,7 +1,7 @@
 import { Field, ObjectType, Int, ArgsType } from 'type-graphql';
+import { ICustomer } from '@delightree-task-models/customer.schema';
 import { OrdersDTO } from './orders.dto';
 import { IOrder } from '@delightree-task-models/orders.schema';
-import { ICustomer } from '@delightree-task-models/customer.schema';
 
 @ObjectType()
 export class CustomersDTO implements ICustomer {
@@ -25,9 +25,6 @@ export class CustomersDTO implements ICustomer {
 
   @Field(() => String)
   gender: string;
-
-  @Field(() => String)
-  password: string;
 
   @Field(() => [OrdersDTO], { nullable: true })
   orders: IOrder[];

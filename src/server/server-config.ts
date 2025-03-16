@@ -10,13 +10,14 @@ import { MyContext } from 'src/types/types';
 import http from 'http';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import { CustomerResolver } from '../application/resolvers/customers.resolver';
+import { AnalyticsResolver } from '../application/resolvers/analytic.resolvers';
 config();
 
 export async function ApolloServerConfig(
   http_server: http.Server,
 ): Promise<ApolloServer<MyContext>> {
   const apollo_schema = await buildSchema({
-    resolvers: [CustomerResolver],
+    resolvers: [CustomerResolver, AnalyticsResolver],
   });
   const server = new ApolloServer<MyContext>({
     schema: apollo_schema,
@@ -46,6 +47,7 @@ export function ServerConfig(
   } else {
     app.use(helmet());
   }
+
   app.use(morgan('dev'));
   app.use(express.json({ limit: '50mb' }));
   app.use(express.urlencoded({ extended: true, limit: '50mb' }));

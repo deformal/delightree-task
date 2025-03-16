@@ -7,11 +7,6 @@ import { CustomersDTO, GetCustomerOptionsDTO } from '../dto/customers.dto';
 export class CustomerResolver {
   private readonly customerService: CustomerServices = new CustomerServices();
 
-  @Query(() => [CustomersDTO])
-  async getAllCustomers(): Promise<Array<ICustomer>> {
-    return await this.customerService.getAllCustomers();
-  }
-
   @Query(() => CustomersDTO)
   async getCustomer(
     @Args() options: GetCustomerOptionsDTO,

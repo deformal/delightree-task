@@ -21,11 +21,17 @@ export const ordersSchema = new Schema<IOrder>({
   customer_id: { type: String, required: true, index: true },
   products: { type: [productOfOrderSchema], required: true },
   total_amount: { type: Schema.Types.Number, required: true },
-  order_date: { type: Schema.Types.Date, required: true, default: new Date() },
+  order_date: {
+    type: Schema.Types.Date,
+    required: true,
+    default: new Date(),
+    index: true,
+  },
   status: {
     type: String,
     enum: Object.values(OrderStatus),
     default: OrderStatus.PENDING,
+    index: true,
     required: true,
   },
 });

@@ -25,7 +25,7 @@ export const productSchema = new Schema<IProduct>({
 });
 
 export const productOfOrderSchema = new Schema<IProductOfOrder>({
-  product_id: { type: String, required: true },
+  product_id: { type: String, required: true, index: true },
   quantity: { type: Number, required: true },
   price_at_purchase: { type: Number, required: true },
 });

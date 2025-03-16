@@ -1,6 +1,5 @@
-import { ICustomer } from '@delightree-task-models/customer.schema';
-import { pbkdf2Sync, randomBytes, randomUUID } from 'node:crypto';
-import { CUSTOMER_PASSWORD } from '../../constants';
+import { ICustomer } from '../../infra/mongo/schemas/customer.schema';
+import { randomBytes, randomUUID } from 'node:crypto';
 import { Order } from '../orders/orders.entity';
 
 export class Customer implements ICustomer {
@@ -24,10 +23,9 @@ export class Customer implements ICustomer {
     this.age = customer_config.age;
     this.location = customer_config.location;
     this.gender = customer_config.gender;
-    this.password = customer_config.password;
   }
 
-  private validateCustomerConfig(customer_config: ICustomer) {
+  private validateCustomerConfig(customer_config: ICustomer): void {
     if (!customer_config.name) {
       throw new Error('Customer name is required.');
     }
@@ -43,26 +41,5 @@ export class Customer implements ICustomer {
     if (!customer_config.gender) {
       throw new Error('Customer gender is required.');
     }
-    if (!customer_config.password) {
-      this.newPassword(CUSTOMER_PASSWORD);
-    }
-  }
-
-  newPassword(password: string) {
-    const new_pass = pbkdf2Sync(
-      password,
-      this.salt,
-      1000,
-      64,
-      `sha512`,
-    ).toString(`hex`);
-    this.password = new_pass;
-  }
-
-  validatePassword(password: string): boolean {
-    const hash = pbkdf2Sync(password, this.salt, 1000, 64, `sha512`).toString(
-      `hex`,
-    );
-    return hash === password;
   }
 }

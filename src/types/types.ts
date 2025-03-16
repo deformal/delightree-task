@@ -1,4 +1,5 @@
 import { BaseContext } from '@apollo/server';
+import { Request } from 'express';
 
 export interface MyContext extends BaseContext {
   token?: string;
@@ -15,3 +16,12 @@ export type GeneralResponse = {
 };
 
 export type GetCustomerOptionsTypes = { id?: string; email?: string };
+export type GetProductOptionsTypes = { id?: string; name?: string };
+export type CustomerTokensData = {
+  customer_id: string;
+  exp: string;
+  created_at: string;
+};
+export interface AuthMiddlewareRequest extends Request {
+  customer?: CustomerTokensData;
+}

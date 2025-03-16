@@ -1,4 +1,4 @@
-import { CustomerModel, ICustomer } from '../mongo/schemas/customer.schema';
+import { CustomerModel } from '../mongo/schemas/customer.schema';
 import {
   GeneralResponse,
   GetCustomerOptionsTypes,
@@ -44,24 +44,36 @@ export class CustomersRepo {
     }
   }
 
-  async getCustomer(options: GetCustomerOptionsTypes): Promise<ICustomer> {
+  async getCustomer(options: GetCustomerOptionsTypes): Promise<Customer> {
     try {
       const { id, email } = options;
 
       if (!id && !email)
         throw new Error('Either id or email is needed to fetch a customer');
 
-      const customer = await CustomerModel.findOne({
-        $or: [{ _id: id }, { email: email }],
-      }).populate({
-        path: 'orders',
-        model: 'orders',
-      });
+      const customer = await CustomerModel.aggregate<Customer>([
+        {
+          $match: {
+            $or: [{ _id: id }, { email: email }],
+          },
+        },
+        {
+          $lookup: {
+            from: this.orders_table_name,
+            localField: '_id',
+            foreignField: 'customer_id',
+            as: 'orders',
+          },
+        },
+        {
+          $limit: 1,
+        },
+      ]);
 
-      if (!customer)
+      if (!customer || customer.length < 1)
         throw new Error(`Customer with options ${id ? id : email} not found`);
 
-      return customer;
+      return customer[0];
     } catch (err) {
       const error = err as Error;
       console.error(error);
