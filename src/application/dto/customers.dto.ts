@@ -1,8 +1,7 @@
 import { Field, ObjectType, Int, ArgsType } from 'type-graphql';
 import { ICustomer } from '@delightree-task-models/customer.schema';
 import { OrdersDTO } from './orders.dto';
-import { IOrder } from '@delightree-task-models/orders.schema';
-import { Order } from 'src/domain/orders/orders.entity';
+import { Order } from '../../domain/orders/orders.entity';
 
 @ObjectType()
 export class CustomersDTO implements ICustomer {
@@ -28,7 +27,10 @@ export class CustomersDTO implements ICustomer {
   gender: string;
 
   @Field(() => [OrdersDTO], { nullable: true })
-  orders: IOrder[];
+  orders?: Order[];
+
+  @Field(() => OrdersDTO, { nullable: true })
+  biggest_order?: Order;
 }
 
 @ObjectType()

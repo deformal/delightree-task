@@ -28,7 +28,8 @@ export class CustomerServices {
   async getCustomer(args: GetCustomerArgs): Promise<Customer> {
     try {
       const customer = await this.customerRepo.getCustomer(args);
-      return customer;
+      const customer_instance = new Customer(customer);
+      return customer_instance;
     } catch (err) {
       const error = err as Error;
       console.error(error);

@@ -12,7 +12,8 @@ export class Customer implements ICustomer {
   public gender: string;
   public password: string;
   public created_at: Date;
-  public orders: Array<Order>;
+  public orders?: Array<Order>;
+  public biggest_order?: Order | undefined = undefined;
 
   constructor(customer_config: Partial<Customer>) {
     if (!customer_config.name) {
@@ -35,6 +36,8 @@ export class Customer implements ICustomer {
       throw new Error('Customer gender is required.');
     }
 
+    if (customer_config.orders && customer_config.orders.length > 0)
+      this.orders = customer_config.orders.map((order) => new Order(order));
     this._id = customer_config._id || randomUUID();
     this.created_at = customer_config.created_at || new Date();
     this.name = customer_config.name;
@@ -42,6 +45,7 @@ export class Customer implements ICustomer {
     this.age = customer_config.age;
     this.location = customer_config.location;
     this.gender = customer_config.gender;
+    this.setBiggestOrder();
   }
 
   updateCustomer(args: UpdateCustomerArgs): Customer {
@@ -51,6 +55,14 @@ export class Customer implements ICustomer {
     this.age = args.age || this.age;
     this.location = args.location || this.location;
     this.gender = args.gender || this.gender;
+    return this;
+  }
+
+  setBiggestOrder(): Customer {
+    if (!this.orders || this.orders.length < 1) return this;
+    this.biggest_order = this.orders.sort(
+      (a, b) => b.total_amount - a.total_amount,
+    )[0];
     return this;
   }
 }
