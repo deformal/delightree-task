@@ -8,6 +8,7 @@
   "scripts": {
     "build": "node esbuild.config.mjs",
     "start": "node ./dist/main.js",
+    "lint": "eslint --fix",
     "dev": "nodemon --ext ts --exec ts-node ./src/main.ts --verbose",
     "infra:dev:run": "docker compose -p delightree-task --env-file ./.env -f ./docker/docker-compose.yml up --build --force-recreate --remove-orphans -d ",
     "infra:dev:stop": "docker compose -p delightree-task --env-file ./.env -f ./docker/docker-compose.yml --remove-orphans down",
