@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { CustomerModel, ICustomer } from '../schemas/customer.schema';
-import { OrderModel, IOrder } from '../schemas/orders.schema';
+import { OrderModel } from '../schemas/orders.schema';
 import { ProductModel, IProduct } from '../schemas/products.schema';
 import path from 'node:path';
 import { Customer } from '../../../domain/customers/customer.entity';
@@ -37,7 +37,7 @@ const products_data = loadJsonFile<IProduct>(products_json_file_path).map(
   },
 );
 
-const orders_data = loadJsonFile<IOrder>(orders_json_file_path).map((order) => {
+const orders_data = loadJsonFile<Order>(orders_json_file_path).map((order) => {
   const new_order = new Order(order);
   return new OrderModel(new_order);
 });

@@ -11,13 +11,20 @@ import http from 'http';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import { CustomerResolver } from '../application/resolvers/customers.resolver';
 import { AnalyticsResolver } from '../application/resolvers/analytic.resolvers';
+import { ProductResolver } from '../application/resolvers/product.resolvers';
+import { OrdersResolver } from '../application/resolvers/orders.resolver';
 config();
 
 export async function ApolloServerConfig(
   http_server: http.Server,
 ): Promise<ApolloServer<MyContext>> {
   const apollo_schema = await buildSchema({
-    resolvers: [CustomerResolver, AnalyticsResolver],
+    resolvers: [
+      CustomerResolver,
+      ProductResolver,
+      OrdersResolver,
+      AnalyticsResolver,
+    ],
   });
   const server = new ApolloServer<MyContext>({
     schema: apollo_schema,

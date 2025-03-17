@@ -12,16 +12,15 @@ export enum ResponseMessages {
 
 export type GeneralResponse = {
   message: ResponseMessages;
-  ok: boolean;
+  success: boolean;
 };
 
-export type GetCustomerOptionsTypes = { id?: string; email?: string };
-export type GetProductOptionsTypes = { id?: string; name?: string };
 export type CustomerTokensData = {
   customer_id: string;
   exp: string;
   created_at: string;
 };
+
 export interface AuthMiddlewareRequest extends Request {
   customer?: CustomerTokensData;
 }

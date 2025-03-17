@@ -26,6 +26,7 @@
     "strictBindCallApply": false,
     "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": false,
+    "moduleResolution": "node",
     "paths": {
       "@delightree-task/*": [
         "./src/types/*"

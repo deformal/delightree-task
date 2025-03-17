@@ -233,7 +233,6 @@ export class AnalyticsRepository {
           },
         },
       ]);
-      console.log(sales_analytics[0]);
       return sales_analytics[0];
     } catch (err) {
       const error = err as Error;
