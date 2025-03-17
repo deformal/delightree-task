@@ -6,7 +6,7 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "node esbuild.config.mjs",
+    "build": "tsc",
     "start": "node ./dist/main.js",
     "lint": "eslint --fix",
     "dev": "nodemon --ext ts --exec ts-node ./src/main.ts --verbose",
@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@apollo/server": "^4.11.3",
-    "@esbuild-plugins/tsconfig-paths": "^0.1.2",
     "@types/cors": "^2.8.17",
     "@types/jsonwebtoken": "^9.0.9",
     "@types/morgan": "^1.9.9",
@@ -41,7 +40,6 @@
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.7",
     "@types/supertest": "^6.0.2",
-    "esbuild": "0.25.1",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.2",

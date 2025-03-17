@@ -3,7 +3,8 @@
     "dist"
   ],
   "include": [
-    "src"
+    "src",
+    "src/**/*.json"
   ],
   "compilerOptions": {
     "module": "CommonJS",
@@ -27,6 +28,7 @@
     "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": false,
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "paths": {
       "@delightree-task/*": [
         "./src/types/*"
