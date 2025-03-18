@@ -8,9 +8,8 @@ export class ProductService {
     try {
       const products = await this.productRepository.getAllProducts(args);
       const products_instances: Array<Product> = [];
-      for (const product of products) {
-        products_instances.push(new Product(product[1]));
-      }
+      for (const product of products.values())
+        products_instances.push(new Product(product));
       return products_instances;
     } catch (err) {
       const error = err as Error;
