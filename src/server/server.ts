@@ -3,6 +3,7 @@ import http from 'http';
 import { config } from 'dotenv';
 import { ApolloServerConfig, ServerConfig } from './server-config';
 import { DBConnect } from '../infra/mongo/mongo-connect';
+import { redisClient } from '../infra/redis/redis.entity';
 import { PORT } from '../constants';
 config();
 
@@ -10,6 +11,7 @@ export async function startServer() {
   try {
     const app: Express = express();
     await DBConnect();
+    await redisClient.connect();
     const httpServer = http.createServer(app);
     const server = await ApolloServerConfig(httpServer);
     await server.start();

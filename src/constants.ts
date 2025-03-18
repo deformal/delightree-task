@@ -5,6 +5,7 @@ export const MONGO_URI: string = String(process.env.MONGO_URI);
 export const NODE_ENV: string = String(process.env.NODE_ENV);
 export const REDIS_HOST: string = String(process.env.REDIS_HOST);
 export const REDIS_PORT: number = Number(process.env.REDIS_PORT);
+export const REDIS_URI: string = String(process.env.REDIS_URI);
 export const REDIS_PASSWORD: string = String(process.env.REDIS_PASSWORD);
 export const MONGO_DB_NAME: string = String(process.env.MONGO_DB_NAME);
 export const CUSTOMER_PASSWORD: string = String(process.env.CUSTOMER_PASSWORD);
