@@ -18,6 +18,14 @@ config();
 export async function ApolloServerConfig(
   http_server: http.Server,
 ): Promise<ApolloServer<MyContext>> {
+  morgan.token('graphql-query', (req) => {
+    if (req['body']) {
+      const { variables, operationName } = req['body'];
+      return `Operation: ${operationName || 'Anonymous'} | Variables: ${JSON.stringify(variables)}`;
+    }
+    return 'No GraphQL Query';
+  });
+
   const apollo_schema = await buildSchema({
     resolvers: [
       CustomerResolver,
@@ -25,10 +33,18 @@ export async function ApolloServerConfig(
       OrdersResolver,
       AnalyticsResolver,
     ],
+    validate: true,
   });
+
   const server = new ApolloServer<MyContext>({
     schema: apollo_schema,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer: http_server })],
+    logger: {
+      debug: (msg: string) => msg,
+      info: (msg: string) => msg,
+      warn: (msg: string) => msg,
+      error: (msg: string) => msg,
+    },
     formatError: (err) => {
       console.error('GraphQL Error:', err);
       return {
@@ -55,7 +71,29 @@ export function ServerConfig(
     app.use(helmet());
   }
 
-  app.use(morgan('dev'));
+  app.use((req, res, next) => {
+    const oldSend = res.send;
+    res.send = function (body) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      (res as any)['body'] = body;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return, prefer-rest-params
+      return oldSend.apply(res, arguments);
+    };
+    next();
+  });
+
+  morgan.token(
+    'graphql-response',
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
+    (req, res) => (res as any).body || 'No Response',
+  );
+
+  app.use(
+    morgan(':method :url - :graphql-query - Response: :graphql-response', {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      skip: (req) => req.body?.operationName === 'IntrospectionQuery',
+    }),
+  );
   app.use(express.json({ limit: '50mb' }));
   app.use(express.urlencoded({ extended: true, limit: '50mb' }));
   app.use(cors<cors.CorsRequest>(corsOptions));

@@ -2,6 +2,7 @@ import { Field, ObjectType, Int, ArgsType } from 'type-graphql';
 import { ICustomer } from '@delightree-task-models/customer.schema';
 import { OrdersDTO } from './orders.dto';
 import { Order } from '../../domain/orders/orders.entity';
+import { IsInt, Min } from 'class-validator';
 
 @ObjectType()
 export class CustomersDTO implements ICustomer {
@@ -60,9 +61,13 @@ export class GetCustomerOrdersArgs {
   id: string;
 
   @Field(() => Int, { nullable: true, defaultValue: 10 })
+  @IsInt()
+  @Min(1, { message: 'limit cannot be less than 1' })
   limit: number;
 
   @Field(() => Int, { nullable: true, defaultValue: 1 })
+  @IsInt()
+  @Min(1, { message: 'offset cannot be less than 1' })
   offset: number;
 }
 
