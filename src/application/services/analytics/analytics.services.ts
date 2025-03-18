@@ -37,11 +37,13 @@ export class AnalyticsService {
     args: GetTopSellingProductsArgs,
   ): Promise<Array<TopProduct>> {
     try {
-      const cached_data = await redisClient.getTopSellingProductsFromCache();
+      const cached_data = await redisClient.getTopSellingProductsFromCache(
+        args.limit,
+      );
       if (cached_data) return cached_data;
       const res = await this.analyticsRepo.getTopSellingProducts(args);
       if (!res) throw new Error('No Data found related to the customer');
-      await redisClient.setTopSellingProducts(res);
+      await redisClient.setTopSellingProducts(res, args.limit);
       return res;
     } catch (err) {
       const error = err as Error;

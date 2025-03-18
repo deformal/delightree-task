@@ -1,0 +1,138 @@
+query GetCustomerSpending($customerId: ID!) {
+  getCustomerSpending(customer_id: $customerId) {
+    customer_id
+    total_spent
+    average_order_value
+    last_order_date
+    customer {
+      _id
+      created_at
+      name
+      email
+      age
+      location
+      gender
+      orders {
+        _id
+        customer_id
+        total_amount
+        order_date
+        status
+        products {
+          product_id
+          quantity
+          price_at_purchase
+        }
+      }
+      biggest_order {
+        _id
+        customer_id
+        total_amount
+        order_date
+        status
+        products {
+          product_id
+          quantity
+          price_at_purchase
+        }
+      }
+    }
+  }
+}
+
+query GetTopSellingProducts($limit: Int!) {
+  getTopSellingProducts(limit: $limit) {
+    product_id
+    name
+    total_sold
+  }
+}
+
+query GetSalesAnalytics($startDate: String!, $endDate: String!) {
+  getSalesAnalytics(start_date: $startDate, end_date: $endDate) {
+    total_revenue
+    completed_orders
+    category_breakdown {
+      category
+      revenue
+    }
+  }
+}
+
+query GetCustomerOrders($customer_id: String!, $limit: Int, $offset: Int) {
+  getCustomerOrders(id: $customer_id, limit: $limit, offset: $offset) {
+    total_orders
+    orders {
+      _id
+      customer_id
+      total_amount
+      order_date
+      status
+      products {
+        product_id
+        quantity
+        price_at_purchase
+      }
+    }
+  }
+}
+
+query GetProducts($limit: Int) {
+  getProducts(limit: $limit) {
+    _id
+    name
+    category
+    price
+    stock
+    created_at
+  }
+}
+
+mutation CreateOrder($customerId: String!, $products: [ProductsOfOrderArgs!]!) {
+  createOrder(customer_id: $customerId, products: $products) {
+    _id
+    customer_id
+    total_amount
+    order_date
+    status
+    products {
+      product_id
+      quantity
+      price_at_purchase
+    }
+  }
+}
+
+mutation UpdateOrderStatus(
+  $updateOrderStatusId: String!
+  $status: OrderStatusEnum!
+) {
+  updateOrderStatus(id: $updateOrderStatusId, status: $status) {
+    success
+    message
+  }
+}
+
+query GetCustomer($getCustomerId: String!) {
+  getCustomer(id: $getCustomerId) {
+    _id
+    created_at
+    name
+    email
+    age
+    location
+    gender
+    biggest_order {
+      _id
+      customer_id
+      total_amount
+      order_date
+      status
+      products {
+        product_id
+        quantity
+        price_at_purchase
+      }
+    }
+  }
+}

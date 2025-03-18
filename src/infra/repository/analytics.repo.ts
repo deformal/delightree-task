@@ -78,7 +78,7 @@ export class AnalyticsRepository {
       ]);
 
       if (!customer || customer.length < 1)
-        throw new Error(`Customer data for with id ${customer_id} not found`);
+        throw new Error(`Orders data for customer id ${customer_id} not found`);
 
       return customer[0];
     } catch (err) {

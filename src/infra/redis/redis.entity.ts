@@ -33,7 +33,7 @@ class RedisClient {
   ): Promise<void> {
     try {
       await this.redis_client.set(args.customer_id, JSON.stringify(args), {
-        EX: 3600,
+        EX: 120,
       });
     } catch (error) {
       console.error('Error setting customer spending data in Redis:', error);
@@ -53,19 +53,28 @@ class RedisClient {
     }
   }
 
-  async setTopSellingProducts(args: Array<TopProduct>): Promise<void> {
+  async setTopSellingProducts(
+    args: Array<TopProduct>,
+    limit: number,
+  ): Promise<void> {
     try {
-      await this.redis_client.set('top_selling_prods', JSON.stringify(args), {
-        EX: 3600,
-      });
+      await this.redis_client.set(
+        `top_${limit}_selling_product`,
+        JSON.stringify(args),
+        {
+          EX: 120,
+        },
+      );
     } catch (error) {
       console.error('Error getting customer spending data from Redis:', error);
     }
   }
 
-  async getTopSellingProductsFromCache(): Promise<Array<TopProduct> | null> {
+  async getTopSellingProductsFromCache(
+    limit: number,
+  ): Promise<Array<TopProduct> | null> {
     try {
-      const data = await this.redis_client.get('top_selling_prods');
+      const data = await this.redis_client.get(`top_${limit}_selling_product`);
       if (data) return JSON.parse(data) as Array<TopProduct>;
       return null;
     } catch (error) {
@@ -83,7 +92,7 @@ class RedisClient {
       const end_date_value = dates.end_date.split('T')[0];
       const uniqueId = start_date_value + end_date_value;
       await this.redis_client.set(uniqueId, JSON.stringify(args), {
-        EX: 3600,
+        EX: 120,
       });
     } catch (error) {
       console.error('Error getting customer spending data from Redis:', error);
