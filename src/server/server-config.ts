@@ -6,7 +6,7 @@ import morgan from 'morgan';
 import express, { Express } from 'express';
 import { expressMiddleware } from '@apollo/server/express4';
 import { config } from 'dotenv';
-import { MyContext } from 'src/types/types';
+import { ServerContext } from 'src/types/types';
 import http from 'http';
 import { ApolloServerPluginDrainHttpServer } from '@apollo/server/plugin/drainHttpServer';
 import { CustomerResolver } from '../application/resolvers/customers.resolver';
@@ -17,7 +17,7 @@ config();
 
 export async function ApolloServerConfig(
   http_server: http.Server,
-): Promise<ApolloServer<MyContext>> {
+): Promise<ApolloServer<ServerContext>> {
   morgan.token('graphql-query', (req) => {
     if (req['body']) {
       const { variables, operationName } = req['body'];
@@ -36,7 +36,7 @@ export async function ApolloServerConfig(
     validate: true,
   });
 
-  const server = new ApolloServer<MyContext>({
+  const server = new ApolloServer<ServerContext>({
     schema: apollo_schema,
     plugins: [ApolloServerPluginDrainHttpServer({ httpServer: http_server })],
     logger: {
@@ -58,7 +58,7 @@ export async function ApolloServerConfig(
 
 export function ServerConfig(
   app: Express,
-  server: ApolloServer<MyContext>,
+  server: ApolloServer<ServerContext>,
 ): void {
   if (process.env.NODE_ENV === 'development') {
     app.use(

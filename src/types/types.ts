@@ -1,7 +1,7 @@
 import { BaseContext } from '@apollo/server';
 import { Request } from 'express';
 
-export interface MyContext extends BaseContext {
+export interface ServerContext extends BaseContext {
   token?: string;
 }
 
