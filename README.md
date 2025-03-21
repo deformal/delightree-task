@@ -19,6 +19,11 @@
 npm install
 ```
 
+### Create a new `.env` file in the root directory
+```
+touch .env
+``` 
+
 ### Start the database and Redis cache
 
 ```
