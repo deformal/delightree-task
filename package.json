@@ -1,8 +1,8 @@
 {
   "name": "delightree-task",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "",
-  "author": "",
+  "author": "drake9211@gmail.com",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -56,6 +56,9 @@
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
+  },
+  "engines": {
+    "node": ">=v20.15.1"
   },
   "jest": {
     "moduleFileExtensions": [
